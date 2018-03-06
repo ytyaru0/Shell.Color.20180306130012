@@ -85,6 +85,27 @@ function Program () {
     unset values
 
     echo "----- 256 colors -----"
+    #values=`seq 0 255 | awk '{ Color8 }' | awk '{ SGR }'`
+    #values=`seq 0 255 | xargs Color8 | xargs SGR ` # xargs: Color8: そのようなファイルやディレクトリはありません
+    #values=`seq 0 255 | awk "{ Color8 | awk '{ SGR }' }"`
+    #echo -e "$values`SGR_RESET`"
+    #values=`seq 0 255 | awk '{ Color8 }' | awk '{ SGR }'`
+    #values=`seq 0 255 | awk "{ $(echo Color8 5 5 2) }"`
+#    values=`seq 0 255 | awk "{ echo Color8 5 5 2 }"`
+#    values=`seq 0 255 | awk "{ echo AAA }"`
+#    values=`seq 0 255 | awk '{ print AAA }'`
+    #seq 0 255 | awk '{ print $0 }' Color8 5 5 2
+    #seq 0 255 | awk '{ print $0 }' | awk '{ print $0+100 }'
+    #seq 0 255 | awk '{ print $0 }' | awk '{ print $(SGR $(Color8 $0)) }'
+    #seq 0 255 | awk '{ print $0 }' | awk '{ print Color8 $0 }'
+    #seq 0 255 | awk '{ print $0 }' | awk '{ Color8 $0 }'
+    #values=`seq 0 255 | Color8 | SGR | echo `
+    #values=`seq 0 255 | xargs echo `
+    #values=`seq 0 255 | echo `Color8 @-` | echo `
+    #values=`seq 0 255 | echo `Color8 $1` | echo `
+    #values=`seq 0 255 | Color8 | SGR | echo `
+    #values=`seq 0 255 | Color8 ` # 関数が1回しか呼ばれない
+    
     for x in $(seq 0 255) ; do
         local ansi=`SGR $(Color8 $x)`
         #echo -n -e "$ansi$x "
