@@ -42,45 +42,68 @@ function Program () {
     echo -e `SGR_RESET`
     echo "----- Standard colors -----"
     for x in `GetStandardColors` ; do
-        local color=`SGR $(Color8 $x)`
-        echo -n -e "$color$x "
+        local ansi=`SGR $(Color8 $x)`
+        #echo -n -e "$ansi$x "
+        local values="$values$ansi$x "
     done
-    echo -e `SGR_RESET`
+    #echo -e `SGR_RESET`
+    echo -e "$values`SGR_RESET`"
+    unset values
+
     echo "----- Bright colors -----"
     for x in `GetBrightColors` ; do
-        local color=`SGR $(Color8 $x)`
-        echo -n -e "$color$x "
+        local ansi=`SGR $(Color8 $x)`
+        #echo -n -e "$ansi$x "
+        local values="$values$ansi$x "
     done
-    echo -e `SGR_RESET`
+    #echo -e `SGR_RESET`
+    echo -e "$values`SGR_RESET`"
+    unset values
+
     echo "----- Gray scale -----"
     for x in `GetGrayScale` ; do
-        local color=`SGR $(Color8 $x)`
-        echo -n -e "$color$x "
+        local ansi=`SGR $(Color8 $x)`
+        #echo -n -e "$ansi$x "
+        local values="$values$ansi$x "
     done
-    echo -e `SGR_RESET`
+    #echo -e `SGR_RESET`
+    echo -e "$values`SGR_RESET`"
+    unset values
+
     echo "----- 216 color -----"
     for R in `seq 0 5` ; do
         for G in `seq 0 5` ; do
             for B in `seq 0 5` ; do
-                local color=`SGR $(Color8 $(GetColor $R $G $B))`
-                echo -n -e "$color$R$G$B "
+                local ansi=`SGR $(Color8 $(GetColor $R $G $B))`
+                #echo -n -e "$ansi$R$G$B "
+                local values="$values$ansi$R$G$B "
             done
         done
     done
-    echo -e `SGR_RESET`
+    #echo -e `SGR_RESET`
+    echo -e "$values`SGR_RESET`"
+    unset values
+
     echo "----- 256 colors -----"
     for x in $(seq 0 255) ; do
         local ansi=`SGR $(Color8 $x)`
-        echo -n -e "$ansi$x "
+        #echo -n -e "$ansi$x "
         #echo -n -e "`SGR $(Color8 $x)`$x "
+        local values="$values$ansi$x "
     done
-    echo -e `SGR_RESET`
+    #echo -e `SGR_RESET`
+    echo -e "$values`SGR_RESET`"
+    unset values
+
     for x in $(seq 0 255) 0 ; do
         local ansi=`SGR $(BackgroundColor8 $x)`
-        echo -n -e "$ansi$x "
+        #echo -n -e "$ansi$x "
         #echo -n -e "`SGR $(BackgroundColor8 $x)`$x "
+        local values="$values$ansi$x "
     done
-    echo -e `SGR_RESET`
+    #echo -e `SGR_RESET`
+    echo -e "$values`SGR_RESET`"
+    unset values
 }
 
 Program
