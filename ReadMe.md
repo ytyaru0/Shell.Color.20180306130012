@@ -2,6 +2,9 @@
 
 シェルで色を変える。echo, PS1。
 
+![img0](docs/img/0.png)
+![img1](docs/img/1.png)
+
 # 参考
 
 * https://en.wikipedia.org/wiki/ANSI_escape_code
